@@ -68,3 +68,18 @@ document.querySelector('#submit').addEventListener('click', function(){
 });
 
 makeCard();    
+
+// COSAS DEL BOTON Y EL DIALOG
+
+const addBookButton = document.querySelector("#addBook");
+const cancelButton = document.querySelector("#cancel");
+const dialog = document.querySelector("#addBookDialog");
+// dialog.returnValue = "favAnimal";
+
+addBookButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+cancelButton.addEventListener("click", () => {
+  dialog.close();
+});
