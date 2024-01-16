@@ -5,13 +5,14 @@
 }
 
 body {
-    background-color: rgb(19, 27, 27);
-    color: azure;
+    /* background-color: rgb(31, 27, 35); */
+    /* color: azure; */
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     min-height: 100vh;;
     align-items: center;
     flex-direction: column;
+    font-size: 14px;
 }
 
 .form {
@@ -20,7 +21,7 @@ body {
     width: 300px;
     gap: 10px;
     justify-items: flex-start;
-    margin-bottom: 12px;
+    margin: 24px;
 }
 
 .form [type="button"] {
@@ -28,9 +29,28 @@ body {
     justify-self: center;
 }
 
-.card {
-    border: 1px solid white;
-    width: 300px;
-    height: 500px;
+.wrapper {
+    display: grid;
+    grid-template: auto / repeat(4, 1fr);
+    gap: 12px;
     padding: 12px;
+    margin-bottom: 36px;
+}
+
+.card {
+    border: 1px solid black;
+    width: 300px;
+    height: 300px;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+.card-author {
+    font-size: 1.5rem;
 }
