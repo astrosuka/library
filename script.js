@@ -1,22 +1,14 @@
-const myLibrary = [{
-    "title": "Señor de los anillos",
-    "author": "J.R.R. Tolkien",
-    "pages": "1000000",
-    "read": false
-},
-{
-    "title": "Miles de ojos",
-    "author": "Maximiliano Barrientos",
-    "pages": "248",
-    "read": true
-}
-];
+const myLibrary = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+}
+
+Book.prototype.toggleRead = function() {
+    this.read ? this.read = false : this.read = true;
 }
 
 function addBookToLibrary() {
@@ -47,7 +39,7 @@ function makeCard(){
             let cardTitle = document.createElement('div');
             cardTitle.classList.add('card-title');
             newCard.appendChild(cardTitle);
-            cardTitle.textContent = `${myLibrary[book].title} index: ${book}`;
+            cardTitle.textContent = `${myLibrary[book].title}`;
 
             let cardAuthor = document.createElement('div');
             cardAuthor.classList.add('card-author');
@@ -59,10 +51,24 @@ function makeCard(){
             newCard.appendChild(cardPages);
             cardPages.textContent = `pages: ${myLibrary[book].pages}`;
 
-            let cardRead = document.createElement('div');
-            cardRead.classList.add('card-read');
-            newCard.appendChild(cardRead);
-            cardRead.textContent = `read: ${myLibrary[book].read}`;
+            let readToggle = document.createElement('button');
+            readToggle.classList.add('read-toggle');
+            readToggle.textContent = 'Read';
+            newCard.appendChild(readToggle);
+            readToggle.addEventListener('click', function(){
+                console.log(myLibrary[book])
+                myLibrary[book].toggleRead();
+                myLibrary[book].read ? readToggle.classList.add('read') : readToggle.classList.remove('read');
+
+            }); 
+            
+            // let cardRead = document.createElement('div');
+            // cardRead.classList.add('card-read');
+            // newCard.appendChild(cardRead);
+            // cardRead.textContent = `read: ${myLibrary[book].read}`;
+            
+            //checkear si read o no y gregar clase al toggle
+            myLibrary[book].read ? readToggle.classList.add('read')  : readToggle.classList.remove('read');
 
             let removeButton = document.createElement('button');
             removeButton.classList.add('remove-button');
@@ -92,7 +98,6 @@ document.querySelector('#submit').addEventListener('click', function(){
 makeCard();    
 
 // COSAS DEL BOTON Y EL DIALOG
-
 const addBookButton = document.querySelector("#addBook");
 const cancelButton = document.querySelector("#cancel");
 const dialog = document.querySelector("#addBookDialog");
