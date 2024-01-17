@@ -47,7 +47,7 @@ function makeCard(){
             let cardTitle = document.createElement('div');
             cardTitle.classList.add('card-title');
             newCard.appendChild(cardTitle);
-            cardTitle.textContent = myLibrary[book].title;
+            cardTitle.textContent = `${myLibrary[book].title} index: ${book}`;
 
             let cardAuthor = document.createElement('div');
             cardAuthor.classList.add('card-author');
@@ -63,6 +63,20 @@ function makeCard(){
             cardRead.classList.add('card-read');
             newCard.appendChild(cardRead);
             cardRead.textContent = `read: ${myLibrary[book].read}`;
+
+            let removeButton = document.createElement('button');
+            removeButton.classList.add('remove-button');
+            removeButton.textContent = 'Remove';
+            newCard.appendChild(removeButton);
+            removeButton.addEventListener('click', function(){                
+                wrapper.children[newCard.getAttribute('id')].remove() 
+                myLibrary.splice([newCard.getAttribute('id')], 1)
+                indexRendered.splice(newCard.getAttribute('id'), 1);
+
+                for (i = 0; i < myLibrary.length; i++) {
+                    wrapper.children[i].setAttribute('id', i);
+                }
+            })
 
             indexRendered.push(wrapper.children[book].attributes['id'].nodeValue)
         }
@@ -82,7 +96,6 @@ makeCard();
 const addBookButton = document.querySelector("#addBook");
 const cancelButton = document.querySelector("#cancel");
 const dialog = document.querySelector("#addBookDialog");
-// dialog.returnValue = "favAnimal";
 
 addBookButton.addEventListener("click", () => {
   dialog.showModal();
