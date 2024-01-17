@@ -1,3 +1,12 @@
+//dummy library for testing purposes:
+// const myLibrary = [
+//     {title: "libro 1", author: 'javriel', pages: 200, read: true},
+//     {title: "libraso increible", author: 'Gargolina', pages: 400, read: false},
+//     {title: "libraso increible 10 puntos", author: 'Gargolina', pages: 400, read: true},
+//     {title: "libraso increible", author: 'Gargolina', pages: 400, read: false},
+// ];
+
+//real library:
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -16,7 +25,11 @@ function addBookToLibrary() {
     let author = document.querySelector('#author').value;
     let pages = document.querySelector('#pages').value;
     let read = document.querySelector('#read').checked; 
-    myLibrary.push(new Book(title, author, pages, read));
+    if (title){
+        myLibrary.push(new Book(title, author, pages, read));
+    } else {
+        alert('Please type in book title');
+    }
 }
 
 function clearForm() {
@@ -27,10 +40,9 @@ function clearForm() {
 }
 
 const wrapper = document.querySelector('.wrapper');
-const indexRendered =[];
 function makeCard(){
     for (const book in myLibrary) {
-        if (!indexRendered.includes(book)){
+        if (!wrapper.childNodes[book]){
             let newCard = document.createElement('div');
             newCard.classList.add('card');
             wrapper.appendChild(newCard);
@@ -49,7 +61,7 @@ function makeCard(){
             let cardPages = document.createElement('div');
             cardPages.classList.add('card-pages');
             newCard.appendChild(cardPages);
-            cardPages.textContent = `pages: ${myLibrary[book].pages}`;
+            myLibrary[book].pages !== '' ? cardPages.textContent = `${myLibrary[book].pages} pages` : cardPages.textContent = '';
 
             let readToggle = document.createElement('button');
             readToggle.classList.add('read-toggle');
@@ -59,15 +71,8 @@ function makeCard(){
                 console.log(myLibrary[book])
                 myLibrary[book].toggleRead();
                 myLibrary[book].read ? readToggle.classList.add('read') : readToggle.classList.remove('read');
-
             }); 
             
-            // let cardRead = document.createElement('div');
-            // cardRead.classList.add('card-read');
-            // newCard.appendChild(cardRead);
-            // cardRead.textContent = `read: ${myLibrary[book].read}`;
-            
-            //checkear si read o no y gregar clase al toggle
             myLibrary[book].read ? readToggle.classList.add('read')  : readToggle.classList.remove('read');
 
             let removeButton = document.createElement('button');
@@ -77,14 +82,11 @@ function makeCard(){
             removeButton.addEventListener('click', function(){                
                 wrapper.children[newCard.getAttribute('id')].remove() 
                 myLibrary.splice([newCard.getAttribute('id')], 1)
-                indexRendered.splice(newCard.getAttribute('id'), 1);
 
                 for (i = 0; i < myLibrary.length; i++) {
                     wrapper.children[i].setAttribute('id', i);
                 }
             })
-
-            indexRendered.push(wrapper.children[book].attributes['id'].nodeValue)
         }
     }
 }
@@ -97,7 +99,6 @@ document.querySelector('#submit').addEventListener('click', function(){
 
 makeCard();    
 
-// COSAS DEL BOTON Y EL DIALOG
 const addBookButton = document.querySelector("#addBook");
 const cancelButton = document.querySelector("#cancel");
 const dialog = document.querySelector("#addBookDialog");
