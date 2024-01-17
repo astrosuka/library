@@ -1,13 +1,11 @@
-//dummy library for testing purposes:
-// const myLibrary = [
-//     {title: "libro 1", author: 'javriel', pages: 200, read: true},
-//     {title: "libraso increible", author: 'Gargolina', pages: 400, read: false},
-//     {title: "libraso increible 10 puntos", author: 'Gargolina', pages: 400, read: true},
-//     {title: "libraso increible", author: 'Gargolina', pages: 400, read: false},
-// ];
-
-//real library:
 const myLibrary = [];
+
+//dummy books
+myLibrary.push(new Book('Capitalist Realism: Is There No Alternative?', 'Mark Fisher', 81, true));
+myLibrary.push(new Book('Cosas importantes', 'Umbra', '', false));
+myLibrary.push(new Book('Codex Seraphinianus', 'Luigi Serafini', '', true));
+myLibrary.push(new Book('Miles de ojos', 'Maximiliano Barrientos', 248, true));
+myLibrary.push(new Book("The Hitchhiker's Guide to the Galaxy", 'Douglas Adams', 225, true));
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -40,6 +38,7 @@ function clearForm() {
 }
 
 const wrapper = document.querySelector('.wrapper');
+
 function makeCard(){
     for (const book in myLibrary) {
         if (!wrapper.childNodes[book]){
@@ -68,12 +67,11 @@ function makeCard(){
             readToggle.textContent = 'Read';
             newCard.appendChild(readToggle);
             readToggle.addEventListener('click', function(){
-                console.log(myLibrary[book])
-                myLibrary[book].toggleRead();
-                myLibrary[book].read ? readToggle.classList.add('read') : readToggle.classList.remove('read');
+                myLibrary[newCard.getAttribute('id')].toggleRead();
+                myLibrary[newCard.getAttribute('id')].read ? readToggle.classList.add('read') : readToggle.classList.remove('read');
             }); 
             
-            myLibrary[book].read ? readToggle.classList.add('read')  : readToggle.classList.remove('read');
+            myLibrary[book].read ? readToggle.classList.add('read') : readToggle.classList.remove('read');
 
             let removeButton = document.createElement('button');
             removeButton.classList.add('remove-button');
@@ -86,7 +84,7 @@ function makeCard(){
                 for (i = 0; i < myLibrary.length; i++) {
                     wrapper.children[i].setAttribute('id', i);
                 }
-            })
+            });
         }
     }
 }
