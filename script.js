@@ -27,6 +27,13 @@ function addBookToLibrary() {
     myLibrary.push(new Book(title, author, pages, read));
 }
 
+function clearForm() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+    document.querySelector('#pages').value = '';
+    document.querySelector('#read').checked = document.querySelector('#read').default;
+}
+
 const wrapper = document.querySelector('.wrapper');
 const indexRendered =[];
 function makeCard(){
@@ -64,7 +71,8 @@ function makeCard(){
 
 document.querySelector('#submit').addEventListener('click', function(){
     addBookToLibrary();
-    makeCard();    
+    makeCard(); 
+    clearForm();   
 });
 
 makeCard();    
