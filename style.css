@@ -8,6 +8,7 @@
 :root {
     font-size: 16px;
     --gap: 16px;
+    --primary: rgb(175, 234, 58);
 }
 
 body {
@@ -52,26 +53,13 @@ h1 {
     font-size: 3rem;
 }
 
-#addButton {
-    /* margin-left: auto; */
-}
-
 *:focus {
-    outline: 2px dashed yellowgreen;
+    outline: 2px dashed var(--primary);
     
 }
 
 ::backdrop {
     backdrop-filter: blur(3px);
-    /* background-image: linear-gradient(
-      45deg,
-      magenta,
-      rebeccapurple,
-      dodgerblue,
-      green
-    );
-    opacity: 0.55; */
-
   }
 
 
@@ -100,11 +88,11 @@ h1 {
 }
 
 .form input:focus{
-    outline: 2px dashed yellowgreen;
+    outline: 2px dashed var(--primary);
 }
 
 input[type="checkbox"]{
-    accent-color: yellowgreen;
+    accent-color: var(--primary);
 }
 
 .dialog-buttons {
@@ -130,25 +118,20 @@ input[type="checkbox"]{
     gap: calc(var(--gap) * 0.75);
     padding: calc(var(--gap) * 1);
     border-radius: 16px;
-    /* display: grid; */
-    /* grid-template: auto / 1fr 1fr; */
     display: flex;
     flex-direction: column;
 }
 
 .card-title {
-    /* grid-column: 1 / 3; */
     font-size: 1.5rem;
     text-decoration: underline;
 }
 
 .card-author {
-    /* grid-column: 1 / 3; */
     font-size: 1rem;
 }
 
 .card-pages {
-    /* grid-column: 1 / 3; */
     font-size: 0.75rem;
 
 }
@@ -171,5 +154,5 @@ input[type="checkbox"]{
 }
 
 .read {
-    background-color: yellowgreen;
+    background-color: var(--primary);
 }
