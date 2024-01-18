@@ -62,10 +62,14 @@ function makeCard(){
             newCard.appendChild(cardPages);
             myLibrary[book].pages !== '' ? cardPages.textContent = `${myLibrary[book].pages} pages` : cardPages.textContent = '';
 
+            let cardButtons = document.createElement('div');
+            cardButtons.classList.add('card-buttons');
+            newCard.appendChild(cardButtons);
+
             let readToggle = document.createElement('button');
             readToggle.classList.add('read-toggle');
             readToggle.textContent = 'Read';
-            newCard.appendChild(readToggle);
+            cardButtons.appendChild(readToggle);
             readToggle.addEventListener('click', function(){
                 myLibrary[newCard.getAttribute('id')].toggleRead();
                 myLibrary[newCard.getAttribute('id')].read ? readToggle.classList.add('read') : readToggle.classList.remove('read');
@@ -76,7 +80,7 @@ function makeCard(){
             let removeButton = document.createElement('button');
             removeButton.classList.add('remove-button');
             removeButton.textContent = 'Remove';
-            newCard.appendChild(removeButton);
+            cardButtons.appendChild(removeButton);
             removeButton.addEventListener('click', function(){                
                 wrapper.children[newCard.getAttribute('id')].remove() 
                 myLibrary.splice([newCard.getAttribute('id')], 1)
