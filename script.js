@@ -1,10 +1,7 @@
 const myLibrary = [];
 
-//dummy books
+//example books
 myLibrary.push(new Book('Capitalist Realism: Is There No Alternative?', 'Mark Fisher', 81, true));
-myLibrary.push(new Book('Cosas importantes', 'Umbra', '', false));
-myLibrary.push(new Book('Codex Seraphinianus', 'Luigi Serafini', '', true));
-myLibrary.push(new Book('Miles de ojos', 'Maximiliano Barrientos', 248, true));
 myLibrary.push(new Book("The Hitchhiker's Guide to the Galaxy", 'Douglas Adams', 225, true));
 
 function Book(title, author, pages, read) {

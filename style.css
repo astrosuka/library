@@ -43,13 +43,14 @@ button:hover {
 header  {
     display: flex;
     gap: var(--gap);
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
+    flex-direction: column;
     padding: 32px;
-    border-bottom: 1px solid black;
 }
 
 h1 {
+    border-bottom: 1px solid black;
     font-size: 3rem;
 }
 
