@@ -1,19 +1,20 @@
+class Book {
+    constructor (title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read
+    }
+    toggleRead() {
+        this.read ? this.read = false : this.read = true;
+    }
+}
+
 const myLibrary = [];
 
 //example books
 myLibrary.push(new Book('Capitalist Realism: Is There No Alternative?', 'Mark Fisher', 81, true));
 myLibrary.push(new Book("The Hitchhiker's Guide to the Galaxy", 'Douglas Adams', 225, true));
-
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
-
-Book.prototype.toggleRead = function() {
-    this.read ? this.read = false : this.read = true;
-}
 
 function addBookToLibrary() {
     let title = document.querySelector('#title').value;
